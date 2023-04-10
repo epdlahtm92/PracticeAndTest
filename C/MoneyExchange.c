@@ -2,19 +2,23 @@
 
 int main() {
 	int inputMoney = 0;
-	double const currencyExchangeRates[] = {1320, 9.96, 1438.80, 168.16, 1637.59};
-	char const currencyUnits[] = {'$', 'Y', 'E', 'H', 'P'};
-	double const exchangeFee  = 0.003;
+	double const currencyExchangeRates[] = {1322.50, 9.99358, 1436.21, 978.18, 1636.20};
+	//char const currencyUnits[] = {'$', 'Y', 'E', 'H', 'P'};
+	double const exchangeFee  = 0.0175;
 	double feePerBill;
 	double totalFee;
+	int option;
 	int exchangedMoney;
 	int choosenNumber;
 	int remainMoney;
 	
+	printf("Choose Option\n1.KOR WON -> others\n2.Others -> KOR WON\n");
+	scanf("%d",&option);
+
 	printf("Please input money\n");
 	scanf("%d", &inputMoney);
 	
-	printf("\nChoose Currency\n1.USD 2.JPY 3.EUR 4.HKD 5.GBP\nExchange Fee : %f %% \n", exchangeFee * 100);
+	printf("\nChoose Currency\n1.USD 2.JPY 3.EUR 4.CAD 5.GBP\nExchange Fee : %f %% \n", exchangeFee * 100);
 	scanf("%d", &choosenNumber);
 	
 	if (choosenNumber == 1){
@@ -32,19 +36,33 @@ int main() {
 	feePerBill = exchangeFee * currencyExchangeRates[choosenNumber - 1];
 	printf("Fee Per Bill : %f Won\n",feePerBill);
 	
-	exchangedMoney = (int)(inputMoney / (currencyExchangeRates[choosenNumber - 1] + feePerBill));
-	printf("Exchanged Money : %d ", exchangedMoney);
-	printf("%c\n", currencyUnits[choosenNumber - 1]);
+	if(option == 1){
+		exchangedMoney = (int)(inputMoney / (currencyExchangeRates[choosenNumber - 1] + feePerBill));
+	} else {
+		exchangedMoney = (inputMoney * (currencyExchangeRates[choosenNumber - 1] - feePerBill));
+	}
 	
-	totalFee = feePerBill * exchangedMoney;
-		if(totalFee == (int) totalFee) {
-			totalFee = (int) totalFee;
-		} else {
-			totalFee = (int) totalFee + 1;
-		}
+	printf("Exchanged Money : %d\n", exchangedMoney);
+	
+	if (option ==1){
+		totalFee = feePerBill * exchangedMoney;
+	} else {
+		totalFee = feePerBill * inputMoney;
+	}
+	
+	if(totalFee == (int) totalFee) {
+		totalFee = (int) totalFee;
+	} else {
+		totalFee = (int) totalFee + 1;
+	}
 	printf("Total Fee : %.f Won\n", totalFee);
 	
-	remainMoney = inputMoney - (exchangedMoney * currencyExchangeRates[choosenNumber -1]) - totalFee;
+	if (option == 1){
+		remainMoney = inputMoney - (exchangedMoney * currencyExchangeRates[choosenNumber -1]) - totalFee;
+	} else {
+		remainMoney = inputMoney - (exchangedMoney / currencyExchangeRates[choosenNumber -1]);
+	}
+	
 	remainMoney = (int) (remainMoney / 10) * 10;
 	printf("Remain Money : %d Won", remainMoney);
 
