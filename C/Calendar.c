@@ -4,6 +4,7 @@
 int main(){
 	int lastDays[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 	int lastOddDays[] = {31,29,31,30,31,30,31,31,30,31,30,31};
+	const char WEEK[] = {'S','M','T','W','t','F','s'};
 	int inputYear;
 	int weekDay = 1; // 1 is monday
 	int totalDay; // from 1900;
@@ -11,6 +12,7 @@ int main(){
 	int index;
 	int weekSpace;
 	int day;
+	int weekCnt;
 	
 	printf("Please input Year\n");
 	scanf("%d", &inputYear);
@@ -36,9 +38,13 @@ int main(){
 	}
 	
 	for (index = 0; index < 12; index++) {
-		printf("\t %d¿ù\n", index + 1);
+		printf("\t %d\n", index + 1);
 		printf("=====================\n");
-		printf("%3c%3c%3c%3c%3c%3c%3c\n",'S','M','T', 'W', 'T', 'F', 'S');
+		
+		for (weekCnt = 0; weekCnt < 7; weekCnt++){
+			printf("%3c", WEEK[weekCnt]);
+		}
+		printf("\n");
 		
 		for (weekSpace = 0; weekSpace < weekDay; weekSpace++) { 
 			printf("   ");
