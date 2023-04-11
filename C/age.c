@@ -11,7 +11,7 @@ int main () {
 	int month;
 	int day;
 	int age;
-	int i;
+	int index;
 	int numberPlace = 100000;
 	
 	struct tm* t;
@@ -21,17 +21,17 @@ int main () {
 	printf("Please input your ID Number\n");
 	scanf("%d", &inputNumber);
 	
-	for (i = 0; i < 6; i++){
-		idNumbers[i] = inputNumber / numberPlace;
+	for (index = 0; index < 6; index++){
+		idNumbers[index] = inputNumber / numberPlace;
 		inputNumber = inputNumber % numberPlace;
 		numberPlace /= 10;
 	}
 	
-	for (i = 0; i < 6; i++) {
-		printf("%d", idNumbers[i]);
+	for (index = 0; index < 6; index++) {
+		printf("%d", idNumbers[index]);
 	}
 	
-	printf("\n%d %d %d\n", t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
+	printf("\n Today : %d %d %d\n", t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
 	year = t->tm_year + 1900;
 	month = t->tm_mon + 1;
 	day = t->tm_mday;
