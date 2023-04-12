@@ -31,12 +31,13 @@ int main(){
 			for(clap = 0; clap < count; clap++) {
 				printf("%s ", "Clap!");
 				printf("\a");
+				sleep(1);
 			}
 		} else{
 			printf("%s ", buffer);
 		}	
 
-		sleep(1);
+		sleep(2);
 	}
 	
 	return 0;
