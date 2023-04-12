@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <process.h>
 #include <Windows.h>
 #include <string.h>
@@ -29,15 +28,15 @@ int main(){
 			count += char_cnt(buffer, '6');
 			count += char_cnt(buffer, '9');
 			for(clap = 0; clap < count; clap++) {
-				printf("%s ", "Clap!");
-				printf("\a");
-				sleep(1);
+				printf("%s\a ", "Clap!");
+				Sleep(200);
 			}
+			printf("\n");
 		} else{
-			printf("%s ", buffer);
+			printf("%s\n", buffer);
 		}	
 
-		sleep(2);
+		Sleep(500);
 	}
 	
 	return 0;
