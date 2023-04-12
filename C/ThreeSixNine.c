@@ -13,6 +13,7 @@ int char_cnt(char *ptr, char ch) {
 	}
 	return(i);
 }
+
 int main(){
 	int index;
 	int numbers[1000];
