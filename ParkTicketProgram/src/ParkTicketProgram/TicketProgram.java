@@ -10,7 +10,6 @@ public class TicketProgram {
 		int orderCount = 1;
 
 		do {
-
 			//ticket type finder, today, ticket type, id number, id number scan
 			opDt.header_ticketTypeIdNumberPrint();
 
@@ -24,7 +23,7 @@ public class TicketProgram {
 			opDt.endPrint();
 			orderCount++;
 
-		} while(ipDt.getEndOption() == ConstValue.CONTINUE_ORDER);
+		} while (ipDt.getEndOption() == ConstValue.CONTINUE_ORDER);
 
 		// result format print, sum array print
 		opDt.resultPrint(orderCount);

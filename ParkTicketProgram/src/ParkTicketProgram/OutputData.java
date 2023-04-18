@@ -35,7 +35,7 @@ public class OutputData {
 							+ "5. Pregnant Woman");
 		ipDt.setPreferOption();
 	
-		System.out.println("How many tickets");
+		System.out.println("How many tickets (less than 10)");
 		ipDt.setTicketCount();
 	}
 	

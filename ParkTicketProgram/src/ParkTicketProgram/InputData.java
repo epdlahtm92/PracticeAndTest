@@ -11,7 +11,11 @@ public class InputData {
 	private static String idNum;
 	
 	public void setIdNumbers() {
-		String idNumber = scanner.next();
+		String idNumber;
+		do {
+		idNumber = scanner.next();
+		} while (idNumber.length() != 13);
+		
 		idNum = idNumber;
 		
 		for (int index = 0; index < 7; index++) {
@@ -28,7 +32,9 @@ public class InputData {
 	}
 
 	public void setTicketCount() {
+		do {
 		ticketCount = scanner.nextInt();
+		} while(ticketCount > 10 || ticketCount < 1);
 	}
 
 	public int getPreferOption() {
@@ -36,7 +42,9 @@ public class InputData {
 	}
 
 	public void setPreferOption() {
+		do {
 		preferOption = scanner.nextInt();
+		} while (preferOption > 5 || preferOption < 1);
 	}
 
 	public int getEndOption() {
@@ -44,7 +52,9 @@ public class InputData {
 	}
 
 	public void setEndOption() {
-		endOption = scanner.nextInt();;
+		do {
+		endOption = scanner.nextInt();
+		} while (endOption < 1 || endOption > 2);
 	}
 
 	public String getIdNum() {
