@@ -2,28 +2,121 @@
 #include <stdlib.h>
 #include <time.h>
 
-	const int ticketCosts[] = {62000,52000,46000,68000};
-	const long long birthDenom = 1000000;
-	int idNums[7] = {0};
-	int nowYear; 
-	int nowMon; 
-	int nowDate;
-	int birthYear, birthMon, birthDate;
+const int ORIGINAL_TICKET_COSTS[] = {62000,52000,46000,68000};
+const int TIME_TICKET_TYPE = 1;
+const int ID_NUMBER = 2;
+const int AGE_PREFER = 3;
+const int TICKET_COUNT = 4;
+const int TOTAL_COST = 5;
+
+int * today ();	
+int typeCalendar();
+int * birthdayArray();
+int ageCalculator();
+int preferOptionCalculator();
+int ageDiscount ();
+int sumCalculator();
+void headerPrint();
+int * reportList();
+int * ticketSort();
+int * dailySort();
+int * preferSort();
+
+int main() {
+	long long idNum;
+	int ticketType;
+	int index;
+	int indexCol;
+	int preferOption;
+	int ticketCount;
+	int optionTicketCost;
+	int ageTicketCost;
+	int totalTicketCost;
+	int age;
+	int orderCount = 1;
+	int sumCost = 0;
+	int sumPerson = 0;
+	int stopOption = 0;
+	int reportLists[100][6];
 	
+	//time & ticket type (1)
+	int * nowArray = today();
+	ticketType = typeCalendar(nowArray);
+	headerPrint(TIME_TICKET_TYPE, nowArray, ticketType); //headerprint : option 1 - time & today's ticket type print
+	
+	while(orderCount < 101){	
 
-void today () {
-
+		// id number (no print)
+		headerPrint(ID_NUMBER);// headerprint : option 2 - ID Number print  
+		scanf("%lld", &idNum);
+		printf("\n%lld\n", idNum);
+		
+		//id Nums (no print)
+		int * idNums = birthdayArray(idNum);
+		printf("idNums Array : ");
+		for (index = 0; index < 7; index++) {
+			printf("%d ", idNums[index]);
+		}
+		
+		// age & prefer treatment
+		age = ageCalculator(nowArray, idNums);
+		headerPrint(AGE_PREFER,NULL,NULL,age); // headerprint : Option 3 - age & preferential treatment option print
+		scanf("%d", &preferOption); 
+		optionTicketCost = preferOptionCalculator(preferOption, ticketType);
+		printf("option ticket cost : %d", optionTicketCost); // no print
+		
+		//age discount (no print)
+		ageTicketCost = ageDiscount(optionTicketCost, age, preferOption);
+		printf("\nage discounted cost : %d Won\n", ageTicketCost); 
+		
+		// ticket count & total ticket cost(3)
+		headerPrint(TICKET_COUNT); // headerprint : option 4 - ticket count
+		scanf("%d", &ticketCount);
+		totalTicketCost = ageTicketCost * ticketCount;
+		headerPrint(TOTAL_COST, NULL,NULL,NULL, ticketCount, totalTicketCost); // headerprint : option 5 - total cost print
+		
+		// sum ticket counts & sum ticket cost
+		sumCost += totalTicketCost;
+		sumPerson += ticketCount;
+		
+		//report list
+		int (*reportLists)[100] = (void*) reportList(nowArray, ticketType, age, ticketCount, totalTicketCost, preferOption);
+		
+		//end
+		printf("more order?\n 1. Y\n 2. N\n");
+		scanf("%d", &stopOption);
+		if (stopOption == 2) {
+			break;
+		} else {
+			orderCount++;
+			continue;
+		}
+		
+	}
+	printf("total ticket cost : %d\ntotal count : %d", sumCost, sumPerson);
+	for (index = 0 ; index < orderCount; index++){
+		for (indexCol = 0; indexCol < 6; indexCol++){
+			printf("%d", reportLists[index][indexCol]);
+		}
+		printf("\n");
+	}
+		
+}
+int * today () {
+	static int nowArray[3];
+	
 	struct tm* t;
 	time_t base = time(NULL);
 	t = localtime(&base);
 	
-	nowYear = t -> tm_year + 1900;
-	nowMon = t -> tm_mon + 1;
-	nowDate = t -> tm_mday;
+	nowArray[0] = t -> tm_year + 1900;
+	nowArray[1] = t -> tm_mon + 1;
+	nowArray[2] = t -> tm_mday;
 	
+	return nowArray;
 }	
 	
-int typeCalendar(){
+int typeCalendar(int nowArray[3]){
 
 	const int calendar[10][31] = {
 		{1,2,2,1,1,2,2,2,2,2,1,1,2,2,2,2,2,0,0,1,1,1,1,1,0,0,1,1,1,1,1}, // MARCH
@@ -37,16 +130,49 @@ int typeCalendar(){
 		{0,0,0,3,3,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1}, // NOVEMBER
 		{2,1,1,2,2,2,2,2,1,1,2,2,2,2,2,1,1,2,2,2,2,2,0,0,0,2,2,2,2,0,0}}; //DECEMBER
 
-	int todayType = calendar[nowMon - 3][nowDate];
+	int todayType = calendar[nowArray[1] - 3][nowArray[2]];
 	
-//	char types[4] = {'A','B','C','D'};
-	
-//	return types[todayType];
 	return todayType;
 }
 
-void birthdayArray(int idBirth){
+void headerPrint(int printOption, int nowArray[3], int ticketType, int age, int ticketCount, int totalTicketCost) {
 
+	if (printOption == TIME_TICKET_TYPE) {
+		const char types[4] = {'A','B','C','D'};
+		//today
+		printf("%d %d %d\n", nowArray[0], nowArray[1], nowArray[2]);
+		// ticket type
+		printf("ticket type\n1.A\n2.B\n3.C\n4.D\n");
+		printf("today's ticket type is : %c\n", types[ticketType]); 
+	
+	} else if (printOption == ID_NUMBER) {
+		printf("input your ID number\n");
+	
+	} else if (printOption == AGE_PREFER){
+		// age
+		printf("\nage : %d\n", age); //(2)
+		// prefer treatment option
+		printf("choose your Preferential treatment\n1. nothing\n2. the Disabled\n3. national merit\n4. more than three kids\n5. pregnant woman\n"); //(2)
+		
+	} else if (printOption == TICKET_COUNT) {
+		printf("how many ticket (lees than 10)\n");
+	} else if (printOption == TOTAL_COST) {
+		printf("\ntickets : %d\n", ticketCount); // (4)
+		printf("Total Cost : %d Won\nthank you\n", totalTicketCost); // (4)
+		
+	} else {
+		printf("%d", 112233);
+	}
+}
+
+int * birthdayArray(long long idNum){
+	const long long birthDenom = 1000000;
+	static int idNums[7] = {0};
+	
+	lldiv_t dt;
+	dt = lldiv(idNum, birthDenom);
+	int idBirth = (int) dt.quot;
+	
 	if (idBirth / 100000 == 0) { // need refactoring
 		idNums[1] = idBirth / 100000;
 		  idBirth = idBirth % 100000;
@@ -72,173 +198,110 @@ void birthdayArray(int idBirth){
 		idNums[5] = idBirth / 10;
 		idNums[6] = idBirth % 10; 
 	}
-
+	
+	return idNums;
 }
 
-int ageCalculator(){
+int ageCalculator(int nowArray[3], int idNums[7]){
 	int age;
-	birthYear = idNums[0]*10 + idNums[1];
+	int birthYear = idNums[0] * 10 + idNums[1];
 		printf("\nbirthYear : %d\n", birthYear);
 	
-	birthMon = idNums[2]*10 + idNums[3];
+	int birthMon = idNums[2] * 10 + idNums[3];
 		printf("birthMon : %d\n", birthMon);
 
-	birthDate = idNums[4]*10 + idNums[5];
+	int birthDate = idNums[4] * 10 + idNums[5];
 		printf("birthDate : %d\n", birthDate);
 	
 	if(idNums[6] == 3 || idNums[6] == 4) {	
-		if (birthMon <= nowMon && birthDate <= nowDate) {
-			age = nowYear - (birthYear + 2000);
+		if (birthMon <= nowArray[1] && birthDate <= nowArray[2]) {
+			age = nowArray[0] - (birthYear + 2000);
 		} else{
-			age = nowYear - (birthYear + 2000) - 1;
+			age = nowArray[0] - (birthYear + 2000) - 1;
 		}
 	} else {
-		if (birthMon <= nowMon && birthDate <= nowDate) {
-			age = nowYear - (birthYear + 1900);
+		if (birthMon <= nowArray[1] && birthDate <= nowArray[2]) {
+			age = nowArray[0] - (birthYear + 1900);
 		} else{
-			age = nowYear - (birthYear + 1900) - 1;
+			age = nowArray[0] - (birthYear + 1900) - 1;
 		}
 	}
 	return age;
 }
 
-int preferOption(int option, int ageOption, int ticketType){
+int preferOptionCalculator(int prefrOption, int ticketType){ // using double array
 	
 	int convertedCost;
-	int disabledDiscounts[] = {25000,21000,19000,28000};
-	int meritsDiscounts[] = {31000,26000,23000,34000}; // just half price
-	int threeKidsDiscounts[] = {13000,11000,10000,14000};
-	int pregnantWomanDiscounts[] = {10000,8000,7000,11000}; 
+	const int disabledDiscounts[] = {25000,21000,19000,28000};
+	const int meritsDiscounts[] = {31000,26000,23000,34000}; // just half price
+	const int threeKidsDiscounts[] = {13000,11000,10000,14000};
+	const int pregnantWomanDiscounts[] = {10000,8000,7000,11000}; 
 	
-	if (option == 1) {
-		convertedCost = ticketCosts[ticketType];
-	} else if (option == 2){ // disabled
-		convertedCost = convertedCost = ticketCosts[ticketType] - disabledDiscounts[ticketType];
-	} else if (option == 3){ // merits
-		convertedCost = convertedCost = ticketCosts[ticketType] - meritsDiscounts[ticketType];
-	} else if (option == 4){ //threeKids
-		convertedCost = convertedCost = ticketCosts[ticketType] - threeKidsDiscounts[ticketType];
-	} else if (option == 5){ // pregnantwoman
-		convertedCost = convertedCost = ticketCosts[ticketType] - pregnantWomanDiscounts[ticketType];
+	if (prefrOption == 1) {
+		convertedCost = ORIGINAL_TICKET_COSTS[ticketType];
+	} else if (prefrOption == 2){ // disabled
+		convertedCost = convertedCost = ORIGINAL_TICKET_COSTS[ticketType] - disabledDiscounts[ticketType];
+	} else if (prefrOption == 3){ // merits
+		convertedCost = convertedCost = ORIGINAL_TICKET_COSTS[ticketType] - meritsDiscounts[ticketType];
+	} else if (prefrOption == 4){ //threeKids
+		convertedCost = convertedCost = ORIGINAL_TICKET_COSTS[ticketType] - threeKidsDiscounts[ticketType];
+	} else if (prefrOption == 5){ // pregnantwoman
+		convertedCost = convertedCost = ORIGINAL_TICKET_COSTS[ticketType] - pregnantWomanDiscounts[ticketType];
 	}
 	return convertedCost;
 }
 
-int ageDiscount (int cost, int age, int DCoption){
-	int resCost;
-	int normalAgeDC = 10000;
-	int disabledAgeDC = 6000;
-	int meritsAgeDC = 5000;
-	int threeKidsAgeDC = 8000;
+int ageDiscount (int optionTicketCost, int age, int prferOption){
 	
-	if (age >= 65 || age <=12){
-		if (age >=3){
-			if (DCoption == 1){
-				resCost = cost - normalAgeDC;
-			} else if (DCoption == 2) {
-				resCost = cost - disabledAgeDC;
-			} else if (DCoption == 3) {
-				resCost = cost - meritsAgeDC;
-			} else if (DCoption == 4) {
-				resCost = cost - threeKidsAgeDC;
-			} else {
-				resCost = cost;
-			}
+	int resCost;
+	const int normalAgeDC = 10000;
+	const int disabledAgeDC = 6000;
+	const int meritsAgeDC = 5000;
+	const int threeKidsAgeDC = 8000;
+	
+	if (age >= 65 || age <=12 && age >=3){
+	
+		if (prferOption == 1){
+			resCost = optionTicketCost - normalAgeDC;
+		} else if (prferOption == 2) {
+			resCost = optionTicketCost - disabledAgeDC;
+		} else if (prferOption == 3) {
+			resCost = optionTicketCost - meritsAgeDC;
+		} else if (prferOption == 4) {
+			resCost = optionTicketCost - threeKidsAgeDC;
 		} else {
-			resCost = 0;
+			resCost = optionTicketCost;
 		}
+
+	} else if(age < 3){
+		resCost = 0;
+	
 	} else {
-		resCost = cost;
+		resCost = optionTicketCost;
 	}
-	resCost = cost;
 	
 	return resCost;
 }
-int main() {
-	long long idNum;
-	int idBirth;
-	int ticketType;
-	int index;
-	int option;
-	int ticketCount;
-	int newTicketCost;
-	int finalCost;
-	int totalCost;
-	int age;
-	int sumCost = 0;
-	int sumPerson = 0;
-	int stopOption = 0;
-	char c;
-	char types[4] = {'A','B','C','D'};
-	
-	today();
-	lldiv_t dt;
-	
-	//time
-	printf("%d %d %d\n", nowYear, nowMon, nowDate);
-	
-	// ticket type
-	printf("ticket type\n1.A\n2.B\n3.C\n4.D\n");
-	ticketType = typeCalendar();
-	printf("today's ticket type is : %c\n", types[ticketType]); 
-	
-	while(stopOption != 3){	
-	// id number
-	printf("input your ID number\n");
-	scanf("%lld", &idNum);
-	printf("\n%lld\n", idNum);
 
-	//id birth
-	dt = lldiv(idNum, birthDenom);
-	idBirth = (int) dt.quot;
-	printf("idBirth int : %d\n", idBirth);
+int * reportList(int nowArray[3], int ticketType, int age, int ticketCount, int totalTicketCost, int preferOption){
+	int index;
+	static int reportLists[100][6] = {0,};
 	
-	//id Nums
-	birthdayArray(idBirth);
-	printf("idNums Array : ");
-	for (index = 0; index < 7; index++) {
-		printf("%d ", idNums[index]);
+	for(index = 0; index < 100; index++){
+		if (reportLists[index][0] != 0) {
+				reportLists[index][0] = (nowArray[0] * 10000) + (nowArray[1] * 100) + nowArray[2];
+				reportLists[index][1] = age;
+				reportLists[index][2] = ticketType;
+				reportLists[index][3] = ticketCount;
+				reportLists[index][4] = totalTicketCost;
+				reportLists[index][5] = preferOption;
+				break;
+		} else {
+			continue;
+		}
 	}
+	return (int*) reportLists;
 	
-	// age
-	age = ageCalculator();
-	printf("\nage : %d\n", age);
-	
-	// option
-	printf("choose your Preferential treatment\n1. nothing\n2. the Disabled\n3. national merit\n4. more than three kids\n5. pregnant woman\n");
-	scanf("%d", &option);
-	newTicketCost = preferOption(option, age, ticketType);
-	printf("new ticket cost : %d", newTicketCost);
-	
-	//age discount
-	finalCost = ageDiscount(newTicketCost, age, option);
-	printf("\nfinal cost : %d Won\n", finalCost);
-	
-	// ticket count
-	printf("how many ticket (lees than 10)\n");
-	scanf("%d", &ticketCount);
-	printf("\ntickets : %d\n", ticketCount);
-	
-	// ticket cost
-	totalCost = newTicketCost * ticketCount;
-	printf("Total Cost : %d Won\nthank you\n", totalCost);
-	
-	sumCost += totalCost;
-	sumPerson += ticketCount;
-	
-	//end
-	printf("more order?\n 1. Y\n 2. N\n");
-	scanf("%d", stopOption);
-	if (stopOption == 2) {
-		printf("sumCost : %d\n sumPerson : %d", sumCost, sumPerson);
-		stopOption++;
-		break;
-	} else {
-		continue;
-	}
-	
-	}
-		
 }
 	
 
