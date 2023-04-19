@@ -9,7 +9,6 @@ public class PriceCalculator {
 	private static int personTypeCount[] = new int[4]; // normal, elder, kid, baby 
 	private static int ticketTypeCount[] = new int[5]; // normal, disabled, merit, 3kids, pregW - ipDt.PreferOption
 	
-	
 	InputData ipDt = null;
 	CalendarAge ca = null;
 	

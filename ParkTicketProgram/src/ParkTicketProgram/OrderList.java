@@ -8,6 +8,7 @@ public class OrderList {
 	private int amount;
 	private int cost;
 	private int gender;
+	private int genderNum;
 	
 	public String getIdNumber() {
 		return idNumber;
@@ -30,10 +31,6 @@ public class OrderList {
 	public int getOption() {
 		return option;
 	}
-	public String getOptionNumToString() {
-		String optionNumStr = Integer.toString(option);
-		return optionNumStr;
-	}
 	public String getOptionToString() {
 		ipDt = new InputData();
 		String optionToString = ConstValue.PREFER_OPTIONS[option - 1];
@@ -47,20 +44,12 @@ public class OrderList {
 	public int getAmount() {
 		return amount;
 	}
-	public String getAmountToString() {
-		String amountStr = Integer.toString(amount);
-		return amountStr;
-	}
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 	
 	public int getCost() {
 		return cost;
-	}
-	public String getCostToString() {
-		String costStr = Integer.toString(cost);
-		return costStr;
 	}
 	public void setCost(int cost) {
 		this.cost = cost;
@@ -69,9 +58,18 @@ public class OrderList {
 	public int getGender() {
 		return gender;
 	}
-	public String getGenderNumToString() {
-		String genderStr = Integer.toString(gender);
-		return genderStr;
+	public int getGenderNum() {
+		return genderNum;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
+	public void setGenderNum() {
+		if (gender == 1 || gender == 3) {
+			genderNum = 1;
+		} else if (gender == 2 || gender == 4 ) {
+			genderNum = 2;
+		}
 	}
 	public String getGenderToString() {
 		String genderToString = null;
@@ -82,12 +80,9 @@ public class OrderList {
 		}
 		return genderToString;
 	}
-	public void setGender(int gender) {
-		this.gender = gender;
-	}
 	
 	public String getCSV() {
-		String resStr = idNumber + "," + age + "," + gender + "," + option + "," + amount  + "," + cost;
+		String resStr = idNumber + "," + age + "," + genderNum + "," + option + "," + amount  + "," + cost;
 		return resStr;
 	}
 	

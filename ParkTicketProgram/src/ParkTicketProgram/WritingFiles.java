@@ -1,30 +1,25 @@
 package ParkTicketProgram;
 
 import java.io.FileWriter;
+import java.io.IOException;
 
 public class WritingFiles {
-	public void WritingFiles() {
-		FileWriter fw = null;
-		ListSaving ls = null;
+	private ListSaving ls = null;
+	private FileWriter fw = null;
+	
+	public WritingFiles() throws IOException{
+		ls = new ListSaving();
+		fw = new FileWriter("C:\\\\Users\\\\kopo\\\\workspace\\\\TicketProgram.csv", true);
+	}
 
-		String filePath = "C:\\Users\\kopo\\workspace\\TicketProgram.csv";
-
-		String nl = System.lineSeparator();
-
-		try {
-			fw = new FileWriter(filePath, true);
-			ls = new ListSaving();
-			fw.write("============================================================");
-			
-			for (OrderList order : ls.getData()) {
-				String orderData  = order.getIdNumber() + "," + order.getAge() + "," + order.getGenderToString() + "," + order.getOption() + "," + order.getOptionToString() + "," + order.getAmount() + "," + order.getCost();
-				fw.write(orderData);
-				fw.write(nl);
-			}
-			fw.write("============================================================");
-
-		} catch (Exception e) {
-			e.printStackTrace();
+	public void writingFile() throws IOException { 
+		fw.write("id,age,gender,option,amount,cost\n");
+		for (OrderList order : ls.getData()) {
+			order.setGenderNum();
+		//	String dataLine = order.getCSV() + "\n";
+			fw.write(order.getCSV() + "\n");
 		}
+		fw.close();
 	}
 }
+

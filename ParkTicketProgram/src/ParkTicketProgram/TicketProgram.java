@@ -9,7 +9,6 @@ public class TicketProgram {
 		InputData ipDt = new InputData();
 		OutputData opDt = new OutputData();
 		
-		
 		int orderCount = 1;
 
 		do {
@@ -28,11 +27,12 @@ public class TicketProgram {
 
 		} while (ipDt.getEndOption() == ConstValue.CONTINUE_ORDER);
 
-		// result format print, sum array print, sort print
+		// result format print, sum array print
 		opDt.resultPrint(orderCount);
+		
+		//sort print, csv output
 		opDt.sortPrint();
 		
-		//csv output
 		
 	}
 

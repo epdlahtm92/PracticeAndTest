@@ -1,26 +1,25 @@
 package ParkTicketProgram;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class OutputData {
 	private CalendarAge ca = null;
 	private InputData ipDt = null;
 	private PriceCalculator pc = null;
-	private LocalDate now = null;
 	private ListSaving ls = null;
+	private WritingFiles wf = null;
 	
-	public OutputData() {
+	public OutputData() throws IOException{
 		ca = new CalendarAge();
 		ipDt = new InputData();
 		pc = new PriceCalculator();
-		now = LocalDate.now();
 		ls = new ListSaving();
+		wf = new WritingFiles();
 	}
 	
 	public void header_ticketTypeIdNumberPrint() {
 		ca.ticketTypeFinder();
-		System.out.println("Today is : " + now);
+		System.out.println("Today is : " + ConstValue.now);
 		System.out.println("Today's Ticket Type is : " + ca.getTicketTypeToChar());
 		System.out.println("Plese input your ID Number");
 			
@@ -55,18 +54,17 @@ public class OutputData {
 		System.out.println("Total cost : " + pc.getTotalTicketCost());
 	}
 	
-	public void endPrint() throws IOException {
+	public void endPrint() {
 		pc.setSumTicketCount(ipDt.getTicketCount());
 		pc.setSumTicketCost(pc.getTotalTicketCost());
 		System.out.println("More Order?\n1. Y\n2. N");
 			ipDt.setEndOption();
 		ls.setOrderLists(ipDt.getIdNum(), ca.getCustomerAge(), ipDt.getPreferOption(), ipDt.getTicketCount(), pc.getTotalTicketCost());
-//		ls.writingFile();
 	}
 	
 	public void resultPrint(int orderCount) {
 		System.out.println("============================================================");
-		System.out.printf("%60s\n", now);
+		System.out.printf("%60s\n", ConstValue.now);
 		System.out.println("total order count : " + orderCount);
 		System.out.println("============================================================");
 
@@ -75,7 +73,7 @@ public class OutputData {
 			System.out.printf("%8s%8d%8s%- 3d%17s%8d%8d\n", order.getIdNumber(), order.getAge(), order.getGenderToString(), order.getOption(), order.getOptionToString(), order.getAmount(), order.getCost());
 		}
 		
-		System.out.println("============================================================");
+		System.out.println("------------------------------------------------------------");
 		System.out.printf("%8s%44d%8d\n", "Sum", pc.getSumTicketCount(), pc.getSumTicketCost());
 		System.out.println("============================================================");
 
@@ -93,7 +91,7 @@ public class OutputData {
 		System.out.printf("%12s%12s%12s%12s%12s\n", "nothing", "disabled", "merit", "3kids", "pregWoman");
 		System.out.printf("%12d%12d%12d%12d%12d\n", pc.getTicketTypeCount_Nothing(), pc.getTicketTypeCount_Disabled(), pc.getTicketTypeCount_merit(), pc.getTicketTypeCount_ThreeKids(), pc.getTicketTypeCount_PregWoman());
 		System.out.println("============================================================");
-		ls.writingFile();
+		wf.writingFile();
 	}
 	
 }

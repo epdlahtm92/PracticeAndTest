@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class ConstValue {
 	
-	static LocalDate now = LocalDate.now();
+	public static LocalDate now = LocalDate.now();
 	public static final int NOW_YEAR = now.getYear();
 	public static final int NOW_MON = now.getMonthValue();
 	public static final int NOW_DATE = now.getDayOfMonth();
