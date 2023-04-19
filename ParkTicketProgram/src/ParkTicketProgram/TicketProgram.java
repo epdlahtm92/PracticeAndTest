@@ -1,12 +1,15 @@
 package ParkTicketProgram;
 
+import java.io.IOException;
+
 public class TicketProgram {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
 		InputData ipDt = new InputData();
 		OutputData opDt = new OutputData();
-		WritingFiles wf = new WritingFiles();
+		
+		
 		int orderCount = 1;
 
 		do {
@@ -25,11 +28,12 @@ public class TicketProgram {
 
 		} while (ipDt.getEndOption() == ConstValue.CONTINUE_ORDER);
 
-		// result format print, sum array print
+		// result format print, sum array print, sort print
 		opDt.resultPrint(orderCount);
+		opDt.sortPrint();
 		
 		//csv output
-		wf.WritingFiles();
+		
 	}
 
 }

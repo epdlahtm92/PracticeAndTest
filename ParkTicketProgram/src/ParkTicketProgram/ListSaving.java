@@ -1,5 +1,7 @@
 package ParkTicketProgram;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,5 +30,15 @@ public class ListSaving {
 		return data;
 	}
 	
+	public void writingFile() throws IOException {
+		
+		FileWriter fw = new FileWriter("C:\\\\Users\\\\kopo\\\\workspace\\\\TicketProgram.txt", true);
+		fw.write("id,age,gender,option,amount,cost\n");
+		for (OrderList order : data) {
+			String dataLine = order.getCSV() + "\n";
+			fw.write(dataLine);
+		}
+		fw.close();
+	}
 	
 }

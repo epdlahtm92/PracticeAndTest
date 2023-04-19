@@ -17,7 +17,7 @@ public class ConstValue {
 	public static final String PREFER_OPTIONS[] = {"Nothing", 
 												   "the Disabled", 
 												   "National merit", 
-												   "More than thred kids", 
+												   "More than 3 kids", 
 												   "Pregnant woman"};
 	
 	public static final int OPTION_DCs[][] = {{0, 0, 0, 0},

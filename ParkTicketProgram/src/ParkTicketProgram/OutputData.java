@@ -1,5 +1,6 @@
 package ParkTicketProgram;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class OutputData {
@@ -54,13 +55,13 @@ public class OutputData {
 		System.out.println("Total cost : " + pc.getTotalTicketCost());
 	}
 	
-	public void endPrint() {
+	public void endPrint() throws IOException {
 		pc.setSumTicketCount(ipDt.getTicketCount());
 		pc.setSumTicketCost(pc.getTotalTicketCost());
 		System.out.println("More Order?\n1. Y\n2. N");
 			ipDt.setEndOption();
 		ls.setOrderLists(ipDt.getIdNum(), ca.getCustomerAge(), ipDt.getPreferOption(), ipDt.getTicketCount(), pc.getTotalTicketCost());
-
+//		ls.writingFile();
 	}
 	
 	public void resultPrint(int orderCount) {
@@ -78,6 +79,21 @@ public class OutputData {
 		System.out.printf("%8s%44d%8d\n", "Sum", pc.getSumTicketCount(), pc.getSumTicketCost());
 		System.out.println("============================================================");
 
+	}
+	
+	public void sortPrint () throws IOException {
+		System.out.println("============================================================");
+		System.out.println("sort by age");
+		System.out.println("------------------------------------------------------------");
+		System.out.printf("%15s%15s%15s%15s\n", "normal", "elder", "kid", "baby");
+		System.out.printf("%15d%15d%15d%15d\n", pc.getPersonTypeCount_Normal(), pc.getPersonTypeCount_Elder(), pc.getPersonTypeCount_Kid(), pc.getPersonTypeCount_Baby());
+		System.out.println("============================================================");
+		System.out.println("sort by option");
+		System.out.println("------------------------------------------------------------");
+		System.out.printf("%12s%12s%12s%12s%12s\n", "nothing", "disabled", "merit", "3kids", "pregWoman");
+		System.out.printf("%12d%12d%12d%12d%12d\n", pc.getTicketTypeCount_Nothing(), pc.getTicketTypeCount_Disabled(), pc.getTicketTypeCount_merit(), pc.getTicketTypeCount_ThreeKids(), pc.getTicketTypeCount_PregWoman());
+		System.out.println("============================================================");
+		ls.writingFile();
 	}
 	
 }
