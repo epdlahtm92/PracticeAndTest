@@ -3,25 +3,32 @@ package ParkTicketProgram;
 import java.util.Scanner;
 
 public class InputData {
+	
 	Scanner scanner = new Scanner(System.in);
-	private static int languageSelection;
+	private static String languageSelection;
 	private static int idNumbers[] = new int[7];
 	private static int ticketCount; 
 	private static int preferOption;
 	private static int endOption;
 	private static String idNum;
 	
-	
-	
 	public int getLanguageSelection() {
-		return languageSelection;
+		int languageNum = 0;
+		if (languageSelection.contains("US")) {
+			languageNum = 0;
+		} else if (languageSelection.contains("KR")) {
+			languageNum = 1;
+		} else if (languageSelection.contains("JP")) {
+			languageNum = 2;
+		}
+		return languageNum;
 	}
 
 	public void setLanguageSelection() {
-		do {
-		languageSelection = scanner.nextInt();
-		} while (languageSelection != 1 && languageSelection != 2);
+		languageSelection = ConstValue.LocaleToString;
 	}
+
+
 
 	public void setIdNumbers() {
 		String idNumber;

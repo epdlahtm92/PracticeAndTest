@@ -1,10 +1,14 @@
 package ParkTicketProgram;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 public class ConstValue {
 	
-	public static LocalDate now = LocalDate.now();
+	public static final LocalDate now = LocalDate.now();
+	public static final Locale currentLocale = Locale.getDefault();
+	public static final String LocaleToString = currentLocale.toLanguageTag();
+//	public static final String LocaleToString = "JP";
 	public static final int NOW_YEAR = now.getYear();
 	public static final int NOW_MON = now.getMonthValue();
 	public static final int NOW_DATE = now.getDayOfMonth();
@@ -17,11 +21,6 @@ public class ConstValue {
 	public static final int ENGLISH_SELECT = 0;
 	public static final int KOREAN_SELECT = 1;
 	
-	public static final String PREFER_OPTIONS[] = {"Nothing", 
-												   "the Disabled", 
-												   "National merit", 
-												   "More than 3 kids", 
-												   "Pregnant woman"};
 	
 	public static final int OPTION_DCs[][] = {{0, 0, 0, 0},
 											  {25000,21000,19000,28000},
@@ -33,4 +32,8 @@ public class ConstValue {
 	
 	public static final int CONTINUE_ORDER = 1;
 	public static final int END_ORDER = 2;
+	
+	public static final int	ELDER_AGE = 65;
+	public static final int KID_AGE = 12;
+	public static final int BABY_AGE = 3;
 }

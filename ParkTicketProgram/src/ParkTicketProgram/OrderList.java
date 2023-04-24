@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 public class OrderList {
 	
 	private InputData ipDt = null;
+	private LanguageSelection lgs = null;
 	private String todayDateToString = ConstValue.now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 	private String idNumber;
 	private int age;
@@ -38,8 +39,8 @@ public class OrderList {
 	}
 	public String getOptionToString() {
 		ipDt = new InputData();
-		String optionToString = ConstValue.PREFER_OPTIONS[option - 1];
-		return optionToString;
+		lgs = new LanguageSelection();
+		return lgs.getSort3OptionFieldPrints()[ipDt.getLanguageSelection()][ipDt.getPreferOption() - 1];
 	}
 	public void setOption(int option) {
 		this.option = option;

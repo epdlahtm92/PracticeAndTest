@@ -22,23 +22,20 @@ public class PriceCalculator {
 	}
 	
 	public void preferOptionCalculator() {
-		int preferOption = ipDt.getPreferOption() - 1;
-		int ticketType = ca.getTicketType();
-		optionTicketCost = ConstValue.ORIGINAL_TICKET_COSTS[ticketType] - ConstValue.OPTION_DCs[preferOption][ticketType];
-		ticketTypeCount[ticketType] += 1;
+		optionTicketCost = ConstValue.ORIGINAL_TICKET_COSTS[ca.getTicketType()] - ConstValue.OPTION_DCs[ipDt.getPreferOption() - 1][ca.getTicketType()];
+		ticketTypeCount[ca.getTicketType()] += 1;
 	}
 
 	public void ageDiscountCalculator() {
-		int age = ca.getCustomerAge();
 		int resCost = 0;
 
-		if (age >= 65){
+		if (ca.getCustomerAge() >= ConstValue.ELDER_AGE){
 			resCost = optionTicketCost - ConstValue.AGE_DCs[ipDt.getPreferOption() - 1];
 			personTypeCount[1] += 1;
-		} else if(age <= 12 && age >= 3) {
+		} else if(ca.getCustomerAge() <= ConstValue.KID_AGE && ca.getCustomerAge() >= ConstValue.BABY_AGE) {
 			resCost = optionTicketCost - ConstValue.AGE_DCs[ipDt.getPreferOption() - 1];
 			personTypeCount[2] += 1;
-		} else if(age < 3){
+		} else if(ca.getCustomerAge() < ConstValue.BABY_AGE){
 			resCost = 0;
 			personTypeCount[3] += 1;
 		} else {
