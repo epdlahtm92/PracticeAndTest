@@ -1,12 +1,14 @@
 package ParkTicketProgram;
 
 public class LanguageSelection {
+	
+	private static final String LANUGUAGE_OPTION_QUESTION_PRINT = "Language : \n1. English\n2. Korean";
 
-	private static final String headerLanguageVarations[][] = {{"Today is ", "Today's ticket type is ", " Please input your ID number"},
-														{"오늘의 날짜는 ", "오늘의 티켓 타입은 ", "주민번호를 입력하세요"}};
+	private static final String HEADER_LANGUAGE_VARIATIONS[][] = {{"Today is ", "Today's ticket type is ", " Please input your ID number"},
+														{"오늘의 날짜는 ", "오늘의 티켓 종류는 ", "주민번호를 입력하세요"}};
 	
 
-	private static final String bodyLanguageVariations[][] = {{"Please choose your Preferential Treatment\n"
+	private static final String BODY_LANGUAGE_VARIATIONS[][] = {{"Please choose your Preferential Treatment\n"
 														+ "1. Nothing\n" 
 														+ "2. The Disabled\n"
 														+ "3. A men of national merit\n"
@@ -23,55 +25,69 @@ public class LanguageSelection {
 														"몇 장 구매하시겠습니까"}};
 	
 
-	private static final String infoLanguageVariations[][] = {{"Quantity : ", "your age is ", "Option : ", "Option applied cost : ", "Age applied Cost : ", "Total Cost : "},
+	private static final String INFO_LANGUAGE_VARATIONS[][] = {{"Quantity : ", "your age is ", "Option : ", "Option applied cost : ", "Age applied Cost : ", "Total Cost : "},
 															  {"수량 :", "고객님의 나이 : ", "우대사항 : ", "우대사항 할인 적용 금액 : ", "연령 할인 적용 금액 : ", "총 금액 : "}};		
 	
 	
-	private static final String endMoreOrderPrints[] = {"More order?\n 1. Yes\n 2. NO","추가 주문 하시겠습니까?\n1. 예\n2. 아니오"};
+	private static final String END_MORE_ORDER_LANGUAGE_VARIATIONS[] = {"More order?\n 1. Yes\n 2. NO","추가 주문 하시겠습니까?\n1. 예\n2. 아니오"};
 	
-	private static final String result1orderCountPrints[] = {"Total order count : ", "총 주문 횟수 :"};
-	private static final String result2ListFieldNamePrints[][] = {{"ID", "Age", "Gender", "Option", "Amount", "Cost"}, 
+	private static final String RESULT_1_ORDER_COUNT_VARIATIONS[] = {"Total order count : ", "총 주문 횟수 :"};
+	private static final String RESULT_2_LIST_FIELD_NAME_VARIATIONS[][] = {{"ID", "Age", "Gender", "Option", "Amount", "Cost"}, 
 																  {"주민번호", "나이", "성별", "우대사항", "수량", "금액"}};
 
 	
-	private static final String sort1SortCriteriaPrints[][] = {{"sort by age", "sort by option"}, 
+	private static final String SORT_1_SORT_CRITERIA_VARIATIONS[][] = {{"sort by age", "sort by option"}, 
 															   {"나이별 분류", "우대사항별 분류"}};
 	
-	private static final String sort2AgeFieldPrints[][] =  {{"Normal", "Elder", "Kid", "Baby"},
+	private static final String SORT_2_AGE_FIRELD_PRINTS[][] =  {{"Normal", "Elder", "Kid", "Baby"},
 															{"일반", "경로", "아동", "유아"}};
 	
-	private static final String sort4OptionFieldPrints[][] = {{"Nothing", "Disabled", "Merit", "3Kids", "PregWoman"},
+	private static final String SORT_3_OPTION_FIELD_PRINTS[][] = {{"Nothing", "Disabled", "Merit", "3Kids", "PregWoman"},
 															  {"없음", "장애인", "국가유공자", "다자녀", "임신부"}};
+
+	public static String getLanuguageOptionQuestionPrint() {
+		return LANUGUAGE_OPTION_QUESTION_PRINT;
+	}
+
+	public static String[][] getHeaderLanguageVariations() {
+		return HEADER_LANGUAGE_VARIATIONS;
+	}
+
+	public static String[][] getBodyLanguageVariations() {
+		return BODY_LANGUAGE_VARIATIONS;
+	}
+
+	public static String[][] getInfoLanguageVarations() {
+		return INFO_LANGUAGE_VARATIONS;
+	}
+
+	public static String[] getEndMoreOrderLanguageVariations() {
+		return END_MORE_ORDER_LANGUAGE_VARIATIONS;
+	}
+
+	public static String[] getResult1OrderCountVariations() {
+		return RESULT_1_ORDER_COUNT_VARIATIONS;
+	}
+
+	public static String[][] getResult2ListFieldNameVariations() {
+		return RESULT_2_LIST_FIELD_NAME_VARIATIONS;
+	}
+
+	public static String[][] getSort1SortCriteriaVariations() {
+		return SORT_1_SORT_CRITERIA_VARIATIONS;
+	}
+
+	public static String[][] getSort2AgeFireldPrints() {
+		return SORT_2_AGE_FIRELD_PRINTS;
+	}
+
+	public static String[][] getSort3OptionFieldPrints() {
+		return SORT_3_OPTION_FIELD_PRINTS;
+	}
 	
 	
 	
-	public String[][] getHeaderLanguageVarations() {
-		return headerLanguageVarations;
-	}
-	public String[][] getBodyLanguageVariations() {
-		return bodyLanguageVariations;
-	}
-	public String[][] getInfoLanguageVariations() {
-		return infoLanguageVariations;
-	}
-	public String[] getEndMoreOrderPrints() {
-		return endMoreOrderPrints;
-	}
-	public String[] getResult1orderCountPrints() {
-		return result1orderCountPrints;
-	}
-	public String[][] getResult2ListFieldNamePrints() {
-		return result2ListFieldNamePrints;
-	}
-	public String[][] getSort1SortCriteriaPrints() {
-		return sort1SortCriteriaPrints;
-	}
-	public String[][] getSort2AgeFieldPrints() {
-		return sort2AgeFieldPrints;
-	}
-	public String[][] getSort4OptionFieldPrints() {
-		return sort4OptionFieldPrints;
-	}
+	
 	
 	
 }
