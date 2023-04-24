@@ -74,7 +74,7 @@ public class OutputData {
 		}
 		
 		System.out.println("------------------------------------------------------------");
-		System.out.printf("%8s%44d%8d\n", "Sum", pc.getSumTicketCount(), pc.getSumTicketCost());
+		System.out.printf("%8s%44d%8s\n", "Sum", pc.getSumTicketCount(), pc.getSumTicketCostToString());
 		System.out.println("============================================================");
 
 	}

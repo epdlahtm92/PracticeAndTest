@@ -9,7 +9,7 @@ public class TicketProgram {
 		InputData ipDt = new InputData();
 		OutputData opDt = new OutputData();
 		
-		int orderCount = 1;
+		int orderCount = 0;
 
 		do {
 			//ticket type finder, today, ticket type, id number, id number scan

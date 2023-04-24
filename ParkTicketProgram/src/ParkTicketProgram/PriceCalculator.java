@@ -1,5 +1,7 @@
 package ParkTicketProgram;
 
+import java.text.DecimalFormat;
+
 public class PriceCalculator {
 	private static int optionTicketCost;
 	private static int ageTicketCost;
@@ -9,12 +11,14 @@ public class PriceCalculator {
 	private static int personTypeCount[] = new int[4]; // normal, elder, kid, baby 
 	private static int ticketTypeCount[] = new int[5]; // normal, disabled, merit, 3kids, pregW - ipDt.PreferOption
 	
+	DecimalFormat df = null;
 	InputData ipDt = null;
 	CalendarAge ca = null;
 	
 	public PriceCalculator() {
 		ipDt = new InputData();
 		ca = new CalendarAge();
+		df = new DecimalFormat("###,###,###,###,###");
 	}
 	
 	public void preferOptionCalculator() {
@@ -73,6 +77,12 @@ public class PriceCalculator {
 
 	public int getSumTicketCost() {
 		return sumTicketCost;
+	}
+	
+	public String getSumTicketCostToString() {
+		String resTotalCost;
+		resTotalCost = df.format(sumTicketCost);
+		return resTotalCost;
 	}
 
 	public int getSumTicketCount() {
