@@ -22,9 +22,9 @@ public class OutputData {
 		ipDt.setLanguageSelection();
 
 		ca.ticketTypeFinder();
-		System.out.println(lgs.getHeaderLanguageVarations()[ipDt.getLanguageSelection() - 1][0] + ConstValue.now);
-		System.out.println(lgs.getHeaderLanguageVarations()[ipDt.getLanguageSelection() - 1][1] + ca.getTicketTypeToChar());
-		System.out.println(lgs.getHeaderLanguageVarations()[ipDt.getLanguageSelection() - 1][2]);
+		System.out.println(lgs.getHeaderLanguageVariations()[ipDt.getLanguageSelection() - 1][0] + ConstValue.now);
+		System.out.println(lgs.getHeaderLanguageVariations()[ipDt.getLanguageSelection() - 1][1] + ca.getTicketTypeToChar());
+		System.out.println(lgs.getHeaderLanguageVariations()[ipDt.getLanguageSelection() - 1][2]);
 
 		ipDt.setIdNumbers();
 	}
@@ -44,18 +44,18 @@ public class OutputData {
 		pc.ageDiscountCalculator();
 		pc.totalTicketCostCalculator();
 
-		System.out.println(lgs.getInfoLanguageVariations()[ipDt.getLanguageSelection() - 1][0] + ipDt.getTicketCount());
-		System.out.println(lgs.getInfoLanguageVariations()[ipDt.getLanguageSelection() - 1][1] + ca.getCustomerAge());
-		System.out.println(lgs.getInfoLanguageVariations()[ipDt.getLanguageSelection() - 1][2] + ConstValue.PREFER_OPTIONS[ipDt.getPreferOption() - 1]);
-		System.out.println(lgs.getInfoLanguageVariations()[ipDt.getLanguageSelection() - 1][3] + pc.getOptionTicketCost());
-		System.out.println(lgs.getInfoLanguageVariations()[ipDt.getLanguageSelection() - 1][4] + pc.getAgeTicketCost());
-		System.out.println(lgs.getInfoLanguageVariations()[ipDt.getLanguageSelection() - 1][5] + pc.getTotalTicketCost());
+		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection() - 1][0] + ipDt.getTicketCount());
+		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection() - 1][1] + ca.getCustomerAge());
+		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection() - 1][2] + ConstValue.PREFER_OPTIONS[ipDt.getPreferOption() - 1]);
+		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection() - 1][3] + pc.getOptionTicketCost());
+		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection() - 1][4] + pc.getAgeTicketCost());
+		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection() - 1][5] + pc.getTotalTicketCost());
 	}
 
 	public void endPrint() {
 		pc.setSumTicketCount(ipDt.getTicketCount());
 		pc.setSumTicketCost(pc.getTotalTicketCost());
-		System.out.println(lgs.getEndMoreOrderPrints()[ipDt.getLanguageSelection() - 1]);
+		System.out.println(lgs.getEndMoreOrderLanguageVariations()[ipDt.getLanguageSelection() - 1]);
 		ipDt.setEndOption();
 		ls.setOrderLists(ipDt.getIdNum(), ca.getCustomerAge(), ipDt.getPreferOption(), ipDt.getTicketCount(), pc.getTotalTicketCost());
 	}
@@ -63,14 +63,14 @@ public class OutputData {
 	public void resultPrint(int orderCount) {
 		System.out.println("============================================================");
 		System.out.printf("%60s\n", ConstValue.now);
-		System.out.println(lgs.getResult1orderCountPrints()[ipDt.getLanguageSelection() - 1] + orderCount);
+		System.out.println(lgs.getResult1OrderCountVariations()[ipDt.getLanguageSelection() - 1] + orderCount);
 		System.out.println("============================================================");
 
 		for (int index = 0; index < 6; index++) {
 			if (index == 3) {
-				System.out.printf("%20s", lgs.getResult2ListFieldNamePrints()[ipDt.getLanguageSelection() - 1][index]);
+				System.out.printf("%20s", lgs.getResult2ListFieldNameVariations()[ipDt.getLanguageSelection() - 1][index]);
 			} else {
-				System.out.printf("%10s", lgs.getResult2ListFieldNamePrints()[ipDt.getLanguageSelection() - 1][index]);
+				System.out.printf("%10s", lgs.getResult2ListFieldNameVariations()[ipDt.getLanguageSelection() - 1][index]);
 			}
 		}
 		System.out.println();
@@ -87,21 +87,21 @@ public class OutputData {
 
 	public void sortPrint () {
 		System.out.println("============================================================");
-		System.out.println(lgs.getSort1SortCriteriaPrints()[ipDt.getLanguageSelection() - 1][0]);
+		System.out.println(lgs.getSort1SortCriteriaVariations()[ipDt.getLanguageSelection() - 1][0]);
 		System.out.println("------------------------------------------------------------");
 
 		for(int index = 0; index < 4; index++) {
-			System.out.printf("%15s", lgs.getSort2AgeFieldPrints()[ipDt.getLanguageSelection() - 1][index]);
+			System.out.printf("%15s", lgs.getSort2AgeFireldPrints()[ipDt.getLanguageSelection() - 1][index]);
 		}
 		System.out.println();
 
 		System.out.printf("%15d%15d%15d%15d\n", pc.getPersonTypeCount_Normal(), pc.getPersonTypeCount_Elder(), pc.getPersonTypeCount_Kid(), pc.getPersonTypeCount_Baby());
 		System.out.println("============================================================");
-		System.out.println(lgs.getSort1SortCriteriaPrints()[ipDt.getLanguageSelection() - 1][1]);
+		System.out.println(lgs.getSort1SortCriteriaVariations()[ipDt.getLanguageSelection() - 1][1]);
 		System.out.println("------------------------------------------------------------");
 		
 		for(int index = 0; index < 5; index++) {
-			System.out.printf("%12s", lgs.getSort4OptionFieldPrints()[ipDt.getLanguageSelection() - 1][index]);
+			System.out.printf("%12s", lgs.getSort2AgeFireldPrints()[ipDt.getLanguageSelection() - 1][index]);
 		}
 		System.out.println();
 		
