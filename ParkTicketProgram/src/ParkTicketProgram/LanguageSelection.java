@@ -45,43 +45,43 @@ public class LanguageSelection {
 	private static final String SORT_3_OPTION_FIELD_PRINTS[][] = {{"Nothing", "Disabled", "Merit", "3Kids", "PregWoman"},
 															  {"없음", "장애인", "국가유공자", "다자녀", "임신부"}};
 
-	public static String getLanuguageOptionQuestionPrint() {
+	public String getLanuguageOptionQuestionPrint() {
 		return LANUGUAGE_OPTION_QUESTION_PRINT;
 	}
 
-	public static String[][] getHeaderLanguageVariations() {
+	public String[][] getHeaderLanguageVariations() {
 		return HEADER_LANGUAGE_VARIATIONS;
 	}
 
-	public static String[][] getBodyLanguageVariations() {
+	public String[][] getBodyLanguageVariations() {
 		return BODY_LANGUAGE_VARIATIONS;
 	}
 
-	public static String[][] getInfoLanguageVarations() {
+	public String[][] getInfoLanguageVarations() {
 		return INFO_LANGUAGE_VARATIONS;
 	}
 
-	public static String[] getEndMoreOrderLanguageVariations() {
+	public String[] getEndMoreOrderLanguageVariations() {
 		return END_MORE_ORDER_LANGUAGE_VARIATIONS;
 	}
 
-	public static String[] getResult1OrderCountVariations() {
+	public String[] getResult1OrderCountVariations() {
 		return RESULT_1_ORDER_COUNT_VARIATIONS;
 	}
 
-	public static String[][] getResult2ListFieldNameVariations() {
+	public String[][] getResult2ListFieldNameVariations() {
 		return RESULT_2_LIST_FIELD_NAME_VARIATIONS;
 	}
 
-	public static String[][] getSort1SortCriteriaVariations() {
+	public String[][] getSort1SortCriteriaVariations() {
 		return SORT_1_SORT_CRITERIA_VARIATIONS;
 	}
 
-	public static String[][] getSort2AgeFireldPrints() {
+	public String[][] getSort2AgeFireldPrints() {
 		return SORT_2_AGE_FIRELD_PRINTS;
 	}
 
-	public static String[][] getSort3OptionFieldPrints() {
+	public String[][] getSort3OptionFieldPrints() {
 		return SORT_3_OPTION_FIELD_PRINTS;
 	}
 	
