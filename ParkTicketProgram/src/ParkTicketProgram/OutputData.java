@@ -91,7 +91,7 @@ public class OutputData {
 		System.out.println("------------------------------------------------------------");
 
 		for(int index = 0; index < 4; index++) {
-			System.out.printf("%8s", lgs.getSort2AgeFieldPrints()[ipDt.getLanguageSelection()][index]);
+			System.out.printf("%15s", lgs.getSort2AgeFieldPrints()[ipDt.getLanguageSelection()][index]);
 		}
 		System.out.println();
 
