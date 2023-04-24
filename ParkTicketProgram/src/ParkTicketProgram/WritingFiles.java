@@ -6,19 +6,23 @@ import java.io.IOException;
 public class WritingFiles {
 	private ListSaving ls = null;
 	private FileWriter fw = null;
-	
-	public WritingFiles() throws IOException{
+
+	public WritingFiles() {
 		ls = new ListSaving();
-		fw = new FileWriter("C:\\\\Users\\\\kopo\\\\workspace\\\\TicketProgramWithDate.csv", true);
 	}
 
-	public void writingFile() throws IOException { 
-		fw.write("today,id,age,gender,option,amount,cost\n");
-		for (OrderList order : ls.getData()) {
-			order.setGenderNum();
-			fw.write(order.getCSV() + "\n");
+	public void writingFile() { 
+		try {
+			fw = new FileWriter("C:\\\\Users\\\\kopo\\\\workspace\\\\TicketProgramWithDate.csv", true);
+			fw.write("today,id,age,gender,option,amount,cost\n");
+			for (OrderList order : ls.getData()) {
+				order.setGenderNum();
+				fw.write(order.getCSV() + "\n");
+			}
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Write Error");
 		}
-		fw.close();
 	}
 }
 

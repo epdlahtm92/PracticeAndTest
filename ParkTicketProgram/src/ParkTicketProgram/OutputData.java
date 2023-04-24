@@ -1,7 +1,5 @@
 package ParkTicketProgram;
 
-import java.io.IOException;
-
 public class OutputData {
 	private CalendarAge ca = null;
 	private InputData ipDt = null;
@@ -9,7 +7,7 @@ public class OutputData {
 	private ListSaving ls = null;
 	private WritingFiles wf = null;
 	
-	public OutputData() throws IOException{
+	public OutputData() {
 		ca = new CalendarAge();
 		ipDt = new InputData();
 		pc = new PriceCalculator();
@@ -79,7 +77,7 @@ public class OutputData {
 
 	}
 	
-	public void sortPrint () throws IOException {
+	public void sortPrint () {
 		System.out.println("============================================================");
 		System.out.println("sort by age");
 		System.out.println("------------------------------------------------------------");

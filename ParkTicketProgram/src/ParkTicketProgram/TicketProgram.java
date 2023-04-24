@@ -1,10 +1,8 @@
 package ParkTicketProgram;
 
-import java.io.IOException;
-
 public class TicketProgram {
 
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		InputData ipDt = new InputData();
 		OutputData opDt = new OutputData();
