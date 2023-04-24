@@ -4,12 +4,25 @@ import java.util.Scanner;
 
 public class InputData {
 	Scanner scanner = new Scanner(System.in);
+	private static int languageSelection;
 	private static int idNumbers[] = new int[7];
 	private static int ticketCount; 
 	private static int preferOption;
 	private static int endOption;
 	private static String idNum;
 	
+	
+	
+	public int getLanguageSelection() {
+		return languageSelection;
+	}
+
+	public void setLanguageSelection() {
+		do {
+		languageSelection = scanner.nextInt();
+		} while (languageSelection != 1 && languageSelection != 2);
+	}
+
 	public void setIdNumbers() {
 		String idNumber;
 		do {

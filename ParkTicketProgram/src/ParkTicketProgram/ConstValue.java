@@ -14,6 +14,9 @@ public class ConstValue {
 	
 	public static final int ORIGINAL_TICKET_COSTS[] = {62000, 52000, 46000, 68000};
 	
+	public static final int ENGLISH_SELECT = 0;
+	public static final int KOREAN_SELECT = 1;
+	
 	public static final String PREFER_OPTIONS[] = {"Nothing", 
 												   "the Disabled", 
 												   "National merit", 
