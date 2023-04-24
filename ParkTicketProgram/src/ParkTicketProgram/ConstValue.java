@@ -8,7 +8,7 @@ public class ConstValue {
 	public static final LocalDate now = LocalDate.now();
 	public static final Locale currentLocale = Locale.getDefault();
 	public static final String LocaleToString = currentLocale.toLanguageTag();
-//	public static final String LocaleToString = "JP";
+//	public static final String LocaleToString = "KR";
 	public static final int NOW_YEAR = now.getYear();
 	public static final int NOW_MON = now.getMonthValue();
 	public static final int NOW_DATE = now.getDayOfMonth();
