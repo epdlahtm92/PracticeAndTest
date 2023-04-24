@@ -1,7 +1,11 @@
 package ParkTicketProgram;
 
+import java.time.format.DateTimeFormatter;
+
 public class OrderList {
+	
 	private InputData ipDt = null;
+	private String todayDateToString = ConstValue.now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 	private String idNumber;
 	private int age;
 	private int option;
@@ -9,6 +13,7 @@ public class OrderList {
 	private int cost;
 	private int gender;
 	private int genderNum;
+	
 	
 	public String getIdNumber() {
 		return idNumber;
@@ -82,7 +87,7 @@ public class OrderList {
 	}
 	
 	public String getCSV() {
-		String resStr = idNumber + "," + age + "," + genderNum + "," + option + "," + amount  + "," + cost;
+		String resStr = todayDateToString + "," + idNumber + "," + age + "," + genderNum + "," + option + "," + amount  + "," + cost;
 		return resStr;
 	}
 	
