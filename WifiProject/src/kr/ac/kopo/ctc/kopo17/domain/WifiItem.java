@@ -17,6 +17,7 @@ public class WifiItem {
 	private String latitude;
 	private String longitude;
 	private String created;
+	
 	public String getId() {
 		return id;
 	}
@@ -98,11 +99,19 @@ public class WifiItem {
 	public String getLatitude() {
 		return latitude;
 	}
+	public double getLatitudeToDouble() {
+		double res = Double.parseDouble(latitude);
+		return res;
+	}
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 	public String getLongitude() {
 		return longitude;
+	}
+	public Double getLongitudeToDouble() {
+		double res = Double.parseDouble(longitude);
+		return res;
 	}
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
