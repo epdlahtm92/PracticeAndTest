@@ -43,7 +43,7 @@ public class OutputData {
 		pc.preferOptionCalculator();
 		pc.ageDiscountCalculator();
 		pc.totalTicketCostCalculator();
-
+		
 		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][0] + ipDt.getTicketCount());
 		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][1] + ca.getCustomerAge());
 		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][2] + lgs.getSort3OptionFieldPrints()[ipDt.getLanguageSelection()][ipDt.getPreferOption() - 1]);
