@@ -1,6 +1,5 @@
 package kr.ac.kopo.ctc.kopo17;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kr.ac.kopo.ctc.kopo17.dao.WifiItemDao;
@@ -14,35 +13,34 @@ public class WifiMain {
 		WifiItemService wifiItemService = new WifiItemService();
 		WifiItemDao wifiItemDao = new WifiItemDao();
 		List<WifiItem> wifiItems = wifiItemDao.selectAll();
-
+		
+		WifiItem far = null;
+		WifiItem close = null;
+		
 		WifiItem me = new WifiItem();
 		me.setLatitude("37.3860521");
 		me.setLongitude("127.1214038");
-
-		List<Double> distanceList = new ArrayList<Double>();
-		for (WifiItem target : wifiItems) {
-			double d = wifiItemService.getDistance(me, target);
-			distanceList.add(d);
-		}
-		int index = 0;
-		int maxI = 0;
-		int minI =0;
+		
 		double max = Double.MIN_VALUE;
 		double min = Double.MAX_VALUE;
-		for(double d : distanceList) {
+
+		for (WifiItem target : wifiItems) {
+			double d = wifiItemService.getDistance(me, target);
 			if (d >= max) {
-				maxI = index;
+				far = target;
 				max = d;
 			}
 			if (d < min) {
-				minI = index;
+				close = target;
 				min = d;
 			}
-			index++;
 		}
-
-		System.out.printf("%s %s %s\n%s\n%s\n%f\n", wifiItems.get(maxI).getInstallationCityName(), wifiItems.get(maxI).getInstallationDistrictName(), wifiItems.get(maxI).getInstallationLocationDetails(), wifiItems.get(maxI).getRoadNameAddress(), wifiItems.get(maxI).getInstallationLocationName(), max);
-		System.out.printf("%s %s %s\n%s\n%s\n%f", wifiItems.get(minI).getInstallationCityName(), wifiItems.get(minI).getInstallationDistrictName(), wifiItems.get(minI).getInstallationLocationDetails(), wifiItems.get(minI).getRoadNameAddress(), wifiItems.get(minI).getInstallationLocationName(), min);
+		
+		System.out.println("=================================");
+		System.out.printf("%s %s %s\n%s\n%s\n%f\n%f\n%f\n", far.getInstallationCityName(), far.getInstallationDistrictName(), far.getInstallationLocationDetails(), far.getRoadNameAddress(), far.getInstallationLocationName(), max);
+		System.out.println("---------------------------------");
+		System.out.printf("%s %s %s\n%s\n%s\n%f\n", close.getInstallationCityName(), close.getInstallationDistrictName(), close.getInstallationLocationDetails(), close.getRoadNameAddress(), close.getInstallationLocationName(), min);
+		System.out.println("=================================");
 
 	}
 
