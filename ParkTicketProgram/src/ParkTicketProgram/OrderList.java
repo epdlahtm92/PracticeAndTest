@@ -1,12 +1,7 @@
 package ParkTicketProgram;
 
-import java.time.format.DateTimeFormatter;
-
 public class OrderList {
 	
-	private InputData ipDt = null;
-	private LanguageSelection lgs = null;
-	private String todayDateToString = ConstValue.now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 	private String idNumber;
 	private int age;
 	private int option;
@@ -38,9 +33,7 @@ public class OrderList {
 		return option;
 	}
 	public String getOptionToString() {
-		ipDt = new InputData();
-		lgs = new LanguageSelection();
-		return lgs.getSort3OptionFieldPrints()[ipDt.getLanguageSelection()][ipDt.getPreferOption() - 1];
+		return LanguageResourceBundle.getOptionCriterias()[option - 1];
 	}
 	public void setOption(int option) {
 		this.option = option;
@@ -77,6 +70,7 @@ public class OrderList {
 			genderNum = 2;
 		}
 	}
+	
 	public String getGenderToString() {
 		String genderToString = null;
 		if (gender == 1 || gender == 3) {
@@ -88,7 +82,7 @@ public class OrderList {
 	}
 	
 	public String getCSV() {
-		String resStr = todayDateToString + "," + idNumber + "," + age + "," + genderNum + "," + option + "," + amount  + "," + cost;
+		String resStr = ConstValue.todayDateToString + "," + idNumber + "," + age + "," + genderNum + "," + option + "," + amount  + "," + cost;
 		return resStr;
 	}
 	

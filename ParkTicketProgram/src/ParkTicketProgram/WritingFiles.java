@@ -13,7 +13,8 @@ public class WritingFiles {
 
 	public void writingFile() { 
 		try {
-			fw = new FileWriter("C:\\\\Users\\\\kopo\\\\workspace\\\\TicketProgramWithDate.csv");
+			String filePath = "C:\\Users\\kopo\\workspace\\TicketProgramReport_" + ConstValue.todayDateToString + ".csv";
+			fw = new FileWriter(filePath);
 			fw.write("today,id,age,gender,option,amount,cost\n");
 			for (OrderList order : ls.getData()) {
 				order.setGenderNum();

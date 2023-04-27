@@ -23,7 +23,7 @@ public class PriceCalculator {
 	
 	public void preferOptionCalculator() {
 		optionTicketCost = ConstValue.ORIGINAL_TICKET_COSTS[ca.getTicketType()] - ConstValue.OPTION_DCs[ipDt.getPreferOption() - 1][ca.getTicketType()];
-		ticketTypeCount[ca.getTicketType()] += 1;
+		ticketTypeCount[ipDt.getPreferOption() - 1] += 1;
 	}
 
 	public void ageDiscountCalculator() {

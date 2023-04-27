@@ -5,13 +5,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import ParkTicketProgram.ConstValue;
+
 public class ReaderProgram {
 
 	private static int LineCount;
 	
 	public void fileReader() {
 		try {
-			File fl = new File("C:\\\\Users\\\\kopo\\\\workspace\\\\TicketProgramWithDate.csv");
+			String filePath = "C:\\Users\\kopo\\workspace\\TicketProgramReport_" + ConstValue.todayDateToString + ".csv";
+			File fl = new File(filePath);
 			BufferedReader br = new BufferedReader(new FileReader(fl));
 			Sorting st = new Sorting();
 			

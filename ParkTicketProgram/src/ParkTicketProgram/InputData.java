@@ -4,31 +4,16 @@ import java.util.Scanner;
 
 public class InputData {
 	
-	Scanner scanner = new Scanner(System.in);
-	private static String languageSelection;
+	private Scanner scanner = null;
 	private static int idNumbers[] = new int[7];
 	private static int ticketCount; 
 	private static int preferOption;
 	private static int endOption;
 	private static String idNum;
 	
-	public int getLanguageSelection() {
-		int languageNum = 0;
-		if (languageSelection.contains("eu")) {
-			languageNum = 0;
-		} else if (languageSelection.contains("ko")) {
-			languageNum = 1;
-		} else if (languageSelection.contains("jp")) {
-			languageNum = 2;
-		}
-		return languageNum;
+	public InputData() {
+		scanner = new Scanner(System.in);
 	}
-
-	public void setLanguageSelection() {
-		languageSelection = ConstValue.LocaleToString;
-	}
-
-
 
 	public void setIdNumbers() {
 		String idNumber;

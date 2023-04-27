@@ -6,7 +6,6 @@ public class OutputData {
 	private PriceCalculator pc = null;
 	private ListSaving ls = null;
 	private WritingFiles wf = null;
-	private LanguageSelection lgs = null;
 
 	public OutputData() {
 		ca = new CalendarAge();
@@ -14,26 +13,26 @@ public class OutputData {
 		pc = new PriceCalculator();
 		ls = new ListSaving();
 		wf = new WritingFiles();
-		lgs = new LanguageSelection();
 	}
 
 	public void header_ticketTypeIdNumberPrint() {
-		System.out.println(ConstValue.LocaleToString);
-		ipDt.setLanguageSelection();
+		LanguageResourceBundle.bundleControl();
+//		System.out.println(lgs.getLocaleToString());
 
 		ca.ticketTypeFinder();
-		System.out.println(lgs.getHeaderLanguageVariations()[ipDt.getLanguageSelection()][0] + ConstValue.now);
-		System.out.println(lgs.getHeaderLanguageVariations()[ipDt.getLanguageSelection()][1] + ca.getTicketTypeToChar());
-		System.out.println(lgs.getHeaderLanguageVariations()[ipDt.getLanguageSelection()][2]);
+
+		System.out.println(LanguageResourceBundle.todayis);
+		System.out.println(LanguageResourceBundle.Todays_ticket_type_is + ca.getTicketTypeToChar());
+		System.out.println(LanguageResourceBundle.Please_input_your_ID_number);
 
 		ipDt.setIdNumbers();
 	}
 
 	public void body_preferOptionAmountPrint() {
-		System.out.println(lgs.getBodyLanguageVariations()[ipDt.getLanguageSelection()][0]);
+		System.out.println(LanguageResourceBundle.Please_choose_your_Preferential_Treatment);
 		ipDt.setPreferOption();
 
-		System.out.println(lgs.getBodyLanguageVariations()[ipDt.getLanguageSelection()][1]);
+		System.out.println(LanguageResourceBundle.How_many_tickets_less_than_10);
 		ipDt.setTicketCount();
 	}
 
@@ -44,18 +43,21 @@ public class OutputData {
 		pc.ageDiscountCalculator();
 		pc.totalTicketCostCalculator();
 		
-		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][0] + ipDt.getTicketCount());
-		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][1] + ca.getCustomerAge());
-		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][2] + lgs.getSort3OptionFieldPrints()[ipDt.getLanguageSelection()][ipDt.getPreferOption() - 1]);
-		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][3] + pc.getOptionTicketCost());
-		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][4] + pc.getAgeTicketCost());
-		System.out.println(lgs.getInfoLanguageVarations()[ipDt.getLanguageSelection()][5] + pc.getTotalTicketCost());
+		System.out.println(LanguageResourceBundle.Quantity + ipDt.getTicketCount());
+		System.out.println(LanguageResourceBundle.your_age_is + ca.getCustomerAge());
+		System.out.println(LanguageResourceBundle.Option_ + LanguageResourceBundle.getOptionCriterias()[ipDt.getPreferOption() - 1]);
+		System.out.println(LanguageResourceBundle.Option_applied_cost + pc.getOptionTicketCost());
+		System.out.println(LanguageResourceBundle.Age_applied_Cost + pc.getAgeTicketCost());
+		System.out.println(LanguageResourceBundle.Total_Cost + pc.getTotalTicketCost());
+	
 	}
 
 	public void endPrint() {
 		pc.setSumTicketCount(ipDt.getTicketCount());
 		pc.setSumTicketCost(pc.getTotalTicketCost());
-		System.out.println(lgs.getEndMoreOrderLanguageVariations()[ipDt.getLanguageSelection()]);
+		
+		System.out.println(LanguageResourceBundle.More_order_n_1_Yes_n_2_NO);
+		
 		ipDt.setEndOption();
 		ls.setOrderLists(ipDt.getIdNum(), ca.getCustomerAge(), ipDt.getPreferOption(), ipDt.getTicketCount(), pc.getTotalTicketCost());
 	}
@@ -63,20 +65,20 @@ public class OutputData {
 	public void resultPrint(int orderCount) {
 		System.out.println("============================================================");
 		System.out.printf("%60s\n", ConstValue.now);
-		System.out.println(lgs.getResult1OrderCountVariations()[ipDt.getLanguageSelection()] + orderCount);
+		System.out.println(LanguageResourceBundle.Total_order_count + orderCount);
 		System.out.println("============================================================");
 
 		for (int index = 0; index < 6; index++) {
 			if (index == 3) {
-				System.out.printf("%20s", lgs.getResult2ListFieldNameVariations()[ipDt.getLanguageSelection()][index]);
+				System.out.printf("%18s", LanguageResourceBundle.getResultCriterias()[index]);
 			} else {
-				System.out.printf("%8s", lgs.getResult2ListFieldNameVariations()[ipDt.getLanguageSelection()][index]);
+				System.out.printf("%8s", LanguageResourceBundle.getResultCriterias()[index]);
 			}
 		}
 		System.out.println();
 
 		for (OrderList order : ls.getData()) {
-			System.out.printf("%8s%8d%8s% 2d%18s%8d%8d\n", order.getIdNumber(), order.getAge(), order.getGenderToString(), order.getOption(), order.getOptionToString(), order.getAmount(), order.getCost());
+			System.out.printf("%8s%8d%8s% 2d%17s%8d%8d\n", order.getIdNumber(), order.getAge(), order.getGenderToString(), order.getOption(), order.getOptionToString(), order.getAmount(), order.getCost());
 		}
 
 		System.out.println("------------------------------------------------------------");
@@ -87,21 +89,21 @@ public class OutputData {
 
 	public void sortPrint () {
 		System.out.println("============================================================");
-		System.out.println(lgs.getSort1SortCriteriaVariations()[ipDt.getLanguageSelection()][0]);
+		System.out.println(LanguageResourceBundle.sort_by_age);
 		System.out.println("------------------------------------------------------------");
 
 		for(int index = 0; index < 4; index++) {
-			System.out.printf("%15s", lgs.getSort2AgeFieldPrints()[ipDt.getLanguageSelection()][index]);
+			System.out.printf("%15s", LanguageResourceBundle.getAgeCriterieas()[index]);
 		}
 		System.out.println();
 
 		System.out.printf("%15d%15d%15d%15d\n", pc.getPersonTypeCount_Normal(), pc.getPersonTypeCount_Elder(), pc.getPersonTypeCount_Kid(), pc.getPersonTypeCount_Baby());
 		System.out.println("============================================================");
-		System.out.println(lgs.getSort1SortCriteriaVariations()[ipDt.getLanguageSelection()][1]);
+		System.out.println(LanguageResourceBundle.sort_by_option);
 		System.out.println("------------------------------------------------------------");
 		
 		for(int index = 0; index < 5; index++) {
-			System.out.printf("%12s", lgs.getSort3OptionFieldPrints()[ipDt.getLanguageSelection()][index]);
+			System.out.printf("%12s", LanguageResourceBundle.getOptionCriterias()[index]);
 		}
 		System.out.println();
 		
