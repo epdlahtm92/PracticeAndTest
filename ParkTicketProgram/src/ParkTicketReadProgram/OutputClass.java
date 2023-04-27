@@ -9,11 +9,11 @@ public class OutputClass {
 	}
 	
 	public void setCountryRegion() {
-		if (ConstValue.LOCALE_TO_STRING.contains("US")) {
+		if (ConstValue.LOCALE_TO_STRING.contains("eu")) {
 			region = 0;
-		} else if (ConstValue.LOCALE_TO_STRING.contains("KR")) {
+		} else if (ConstValue.LOCALE_TO_STRING.contains("ko")) {
 			region = 1;
-		} else if (ConstValue.LOCALE_TO_STRING.contains("JP")) {
+		} else if (ConstValue.LOCALE_TO_STRING.contains("jp")) {
 			region = 2;
 		}
 	}

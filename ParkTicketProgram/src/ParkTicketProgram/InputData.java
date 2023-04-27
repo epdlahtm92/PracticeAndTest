@@ -14,11 +14,11 @@ public class InputData {
 	
 	public int getLanguageSelection() {
 		int languageNum = 0;
-		if (languageSelection.contains("US")) {
+		if (languageSelection.contains("eu")) {
 			languageNum = 0;
-		} else if (languageSelection.contains("KR")) {
+		} else if (languageSelection.contains("ko")) {
 			languageNum = 1;
-		} else if (languageSelection.contains("JP")) {
+		} else if (languageSelection.contains("jp")) {
 			languageNum = 2;
 		}
 		return languageNum;
