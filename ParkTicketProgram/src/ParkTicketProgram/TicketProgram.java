@@ -24,7 +24,7 @@ public class TicketProgram {
 			opDt.endPrint();
 			orderCount++;
 
-		} while (ipDt.getEndOption() == ConstValue.CONTINUE_ORDER);
+		} while (ipDt.getEndOption() == ParkTicketProgramMain.ConstValue.CONTINUE_ORDER);
 
 		// result format print, sum array print
 		opDt.resultPrint(orderCount);

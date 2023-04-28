@@ -33,7 +33,7 @@ public class OrderList {
 		return option;
 	}
 	public String getOptionToString() {
-		return LanguageResourceBundle.getOptionCriterias()[option - 1];
+		return ParkTicketProgramMain.LanguageResourceBundle.getOptionCriterias()[option - 1];
 	}
 	public void setOption(int option) {
 		this.option = option;
@@ -82,7 +82,7 @@ public class OrderList {
 	}
 	
 	public String getCSV() {
-		String resStr = ConstValue.todayDateToString + "," + idNumber + "," + age + "," + genderNum + "," + option + "," + amount  + "," + cost;
+		String resStr = ParkTicketProgramMain.ConstValue.todayDateToString + "," + idNumber + "," + age + "," + genderNum + "," + option + "," + amount  + "," + cost;
 		return resStr;
 	}
 	

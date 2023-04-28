@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import ParkTicketProgram.ConstValue;
-
 public class ReaderClass {
 	
 	private File f1 = null;
@@ -15,7 +13,7 @@ public class ReaderClass {
 	private static int LineCount;
 	
 	public ReaderClass() {
-		String filePath = "C:\\Users\\kopo\\workspace\\TicketProgramReport_" + ConstValue.todayDateToString + ".csv";
+		String filePath = "C:\\Users\\kopo\\workspace\\TicketProgramReport_" + ParkTicketProgramMain.ConstValue.todayDateToString + ".csv";
 		f1 = new File(filePath);
 		rls = new ReaderListSaving();
 	}

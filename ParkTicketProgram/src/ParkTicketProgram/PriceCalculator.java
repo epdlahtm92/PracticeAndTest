@@ -22,20 +22,20 @@ public class PriceCalculator {
 	}
 	
 	public void preferOptionCalculator() {
-		optionTicketCost = ConstValue.ORIGINAL_TICKET_COSTS[ca.getTicketType()] - ConstValue.OPTION_DCs[ipDt.getPreferOption() - 1][ca.getTicketType()];
+		optionTicketCost = ParkTicketProgramMain.ConstValue.ORIGINAL_TICKET_COSTS[ca.getTicketType()] - ParkTicketProgramMain.ConstValue.OPTION_DCs[ipDt.getPreferOption() - 1][ca.getTicketType()];
 		ticketTypeCount[ipDt.getPreferOption() - 1] += 1;
 	}
 
 	public void ageDiscountCalculator() {
 		int resCost = 0;
 
-		if (ca.getCustomerAge() >= ConstValue.ELDER_AGE){
-			resCost = optionTicketCost - ConstValue.AGE_DCs[ipDt.getPreferOption() - 1];
+		if (ca.getCustomerAge() >= ParkTicketProgramMain.ConstValue.ELDER_AGE){
+			resCost = optionTicketCost - ParkTicketProgramMain.ConstValue.AGE_DCs[ipDt.getPreferOption() - 1];
 			personTypeCount[1] += 1;
-		} else if(ca.getCustomerAge() <= ConstValue.KID_AGE && ca.getCustomerAge() >= ConstValue.BABY_AGE) {
-			resCost = optionTicketCost - ConstValue.AGE_DCs[ipDt.getPreferOption() - 1];
+		} else if(ca.getCustomerAge() <= ParkTicketProgramMain.ConstValue.KID_AGE && ca.getCustomerAge() >= ParkTicketProgramMain.ConstValue.BABY_AGE) {
+			resCost = optionTicketCost - ParkTicketProgramMain.ConstValue.AGE_DCs[ipDt.getPreferOption() - 1];
 			personTypeCount[2] += 1;
-		} else if(ca.getCustomerAge() < ConstValue.BABY_AGE){
+		} else if(ca.getCustomerAge() < ParkTicketProgramMain.ConstValue.BABY_AGE){
 			resCost = 0;
 			personTypeCount[3] += 1;
 		} else {

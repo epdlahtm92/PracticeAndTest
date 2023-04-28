@@ -1,47 +1,53 @@
-package ParkTicketProgram;
+package ParkTicketProgramMain;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LanguageResourceBundle {
 
-	public static String languageQuestion = "";
-	public static String todayis = "";
-	public static String Todays_ticket_type_is = "";
-	public static String Please_input_your_ID_number = "";
-	public static String Please_choose_your_Preferential_Treatment = "";
-	public static String How_many_tickets_less_than_10 = "";
-	public static String Quantity = "";
-	public static String your_age_is = "";
-	public static String Option_ = "";
-	public static String Option_applied_cost = "";
-	public static String Age_applied_Cost = "";
-	public static String Total_Cost = "";
-	public static String More_order_n_1_Yes_n_2_NO = "";
-	public static String Total_order_count = "";
-	public static String ID = "";
-	public static String Age = "";
-	public static String Gender = "";
-	public static String Option = "";
-	public static String Amount = "";
-	public static String Cost = "";
-	public static String sort_by_age = "";
-	public static String sort_by_option = "";
-	public static String Normal = "";
-	public static String Elder = "";
-	public static String Kid = "";
-	public static String Baby = "";
-	public static String Nothing = "";
-	public static String Disabled = "";
-	public static String Merit = "";
-	public static String ThreeKids = "";
-	public static String PregWoman = "";
+	public static String Choose_Program;
+	public static String Ticket_Program;
+	public static String Sort_Program;
+	public static String languageQuestion;
+	public static String todayis;
+	public static String Todays_ticket_type_is;
+	public static String Please_input_your_ID_number;
+	public static String Please_choose_your_Preferential_Treatment;
+	public static String How_many_tickets_less_than_10;
+	public static String Quantity;
+	public static String your_age_is;
+	public static String Option_;
+	public static String Option_applied_cost;
+	public static String Age_applied_Cost;
+	public static String Total_Cost;
+	public static String More_order_n_1_Yes_n_2_NO;
+	public static String Total_order_count;
+	public static String ID;
+	public static String Age;
+	public static String Gender;
+	public static String Option;
+	public static String Amount;
+	public static String Cost;
+	public static String sort_by_age;
+	public static String sort_by_option;
+	public static String Normal;
+	public static String Elder;
+	public static String Kid;
+	public static String Baby;
+	public static String Nothing;
+	public static String Disabled;
+	public static String Merit;
+	public static String ThreeKids;
+	public static String PregWoman;
 
 	
 	public static void bundleControl() {
 		Locale currentLocale = Locale.getDefault();
 		ResourceBundle rb = ResourceBundle.getBundle("LanguageBundle", currentLocale);
 		
+		Choose_Program = rb.getString("Choose_Program");
+		Ticket_Program = rb.getString("Ticket_Program");
+		Sort_Program = rb.getString("Sort_Program");
 		todayis = rb.getString("Today_is");
 		Todays_ticket_type_is = rb.getString("Todays_ticket_type_is");
 		Please_input_your_ID_number = rb.getString("Please_input_your_ID_number");
