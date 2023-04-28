@@ -14,20 +14,23 @@ public class OutputData {
 		ls = new ListSaving();
 		wf = new WritingFiles();
 	}
+	
 
 	public void header_ticketTypeIdNumberPrint() {
+		wf.writingFieldName();
 		LanguageResourceBundle.bundleControl();
-
 		ca.ticketTypeFinder();
 
-		System.out.println(LanguageResourceBundle.todayis);
+		System.out.println(LanguageResourceBundle.todayis + ConstValue.todayDateToString);
 		System.out.println(LanguageResourceBundle.Todays_ticket_type_is + ca.getTicketTypeToChar());
-		System.out.println(LanguageResourceBundle.Please_input_your_ID_number);
-
-		ipDt.setIdNumbers();
+		
 	}
 
 	public void body_preferOptionAmountPrint() {
+		
+		System.out.println(LanguageResourceBundle.Please_input_your_ID_number);
+		ipDt.setIdNumbers();
+		
 		System.out.println(LanguageResourceBundle.Please_choose_your_Preferential_Treatment);
 		ipDt.setPreferOption();
 

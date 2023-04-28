@@ -1,59 +1,74 @@
 package ParkTicketReadProgram;
 
 public class Sorting {
-	private static String dataLine[][] = null;
-	private static int optionCost[] = new int[5]; // 1.none 2.disabled 3.merit 4.kids 5.pregW
-	private static int optionCount[] = new int[5]; // 1.none 2.disabled 3.merit 4.kids 5.pregW
-	private static int ageCount[] = new int[4]; // 1.normal 2. elder 3. kid 4.baby
-	private static int ageCost[] = new int[4]; // 1.normal 2. elder 3. kid 4.baby
+	
+	private ReaderListSaving rs = null;
+	
+	private static int optionCostSum[] = {0,0,0,0,0}; // 1.none 2.disabled 3.merit 4.kids 5.pregW
+	private static int optionCountSum[] = {0,0,0,0,0}; // 1.none 2.disabled 3.merit 4.kids 5.pregW
+	private static int ageCountSum[] = {0,0,0,0}; // 1.normal 2. elder 3. kid 4.baby
+	private static int ageCostSum[] = {0,0,0,0}; // 1.normal 2. elder 3. kid 4.baby
 	private static int totalCount;
 	private static int totalCost;
 
-	public String[][] getDataLine() {
-		return dataLine;
+	public Sorting() {
+		rs = new ReaderListSaving();
 	}
 
-	public void setDataLine(String readLine) {
-		ReaderProgram rp = new ReaderProgram();
-		dataLine = new String[rp.getLineCount()][7];
+	public int[] getOptionCostSum() {
+		return optionCostSum;
+	}
 
-		for (int index = 0; index < rp.getLineCount(); index++) {
-			dataLine[index] = readLine.split(",");		
+	public void setOptionCostSum() {
+		for (int index = 1; index < rs.getReadData().size(); index++) {
+			optionCostSum[Integer.parseInt(rs.getReadData().get(index).getOption()) - 1] += Integer.parseInt(rs.getReadData().get(index).getCost());
+		}
+	}
+
+	public int[] getOptionCountSum() {
+		return optionCountSum;
+	}
+
+	public void setOptionCountSum() {
+		for (int index = 1; index < rs.getReadData().size(); index++) {
+			optionCountSum[Integer.parseInt(rs.getReadData().get(index).getOption()) - 1] += Integer.parseInt(rs.getReadData().get(index).getAmount());
 		}
 
 	}
 
-	public int[] getOptionCount() {
-		return optionCount;
+	public int[] getAgeCountSum() {
+		return ageCountSum;
 	}
 
-
-	public int[] getOptionCost() {
-		return optionCost;
-	}
-
-	public void setOptionSort() {
-		for (int index = 1; index < dataLine.length; index++) {
-			optionCount[Integer.parseInt(dataLine[index][4])- 1] += Integer.parseInt(dataLine[index][5]);
-			optionCost[Integer.parseInt(dataLine[index][4])- 1] += Integer.parseInt(dataLine[index][6]);
+	public void setAgeCountSum() {
+		for (int index = 1; index < rs.getReadData().size(); index++) {
+			if (Integer.parseInt(rs.getReadData().get(index).getAge()) < 65 && Integer.parseInt(rs.getReadData().get(index).getAge()) > 12) {
+				ageCountSum[0] += Integer.parseInt(rs.getReadData().get(index).getAmount());
+			} else if (Integer.parseInt(rs.getReadData().get(index).getAge()) >= 65) {
+				ageCountSum[1] += Integer.parseInt(rs.getReadData().get(index).getAmount());
+			} else if(Integer.parseInt(rs.getReadData().get(index).getAge()) <= 12 && Integer.parseInt(rs.getReadData().get(index).getAge()) >= 3) {
+				ageCountSum[2] += Integer.parseInt(rs.getReadData().get(index).getAmount());
+			} else if(Integer.parseInt(rs.getReadData().get(index).getAge()) < 3) {
+				ageCountSum[3] += Integer.parseInt(rs.getReadData().get(index).getAmount());
+			}
 		}
-
 	}
 
-	public int[] getAgeCount() {
-		return ageCount;
+	public int[] getAgeCostSum() {
+		return ageCostSum;
 	}
 
-
-	public int[] getAgeCost() {
-		return ageCost;
-	}
-
-	public void setAgeSort() {
-		for (int index = 1; index < dataLine.length; index++) {	
-			ageCount[Integer.parseInt(dataLine[index][4])- 1] += Integer.parseInt(dataLine[index][5]);
-			ageCost[Integer.parseInt(dataLine[index][4])- 1] += Integer.parseInt(dataLine[index][6]);
-
+	public void setAgeCostSum() {
+		for (int index = 1; index < rs.getReadData().size(); index++) {
+			if (Integer.parseInt(rs.getReadData().get(index).getAge()) < 65 && Integer.parseInt(rs.getReadData().get(index).getAge()) > 12) {
+				ageCostSum[0] += Integer.parseInt(rs.getReadData().get(index).getCost());
+			} else if (Integer.parseInt(rs.getReadData().get(index).getAge()) >= 65) {
+				ageCostSum[1] += Integer.parseInt(rs.getReadData().get(index).getCost());
+			} else if(Integer.parseInt(rs.getReadData().get(index).getAge()) <= 12 && Integer.parseInt(rs.getReadData().get(index).getAge()) >= 3) {
+				ageCostSum[2] += Integer.parseInt(rs.getReadData().get(index).getCost());
+			} else if(Integer.parseInt(rs.getReadData().get(index).getAge()) < 3) {
+				ageCostSum[3] += Integer.parseInt(rs.getReadData().get(index).getCost());
+			}
 		}
 	}
 
@@ -62,11 +77,9 @@ public class Sorting {
 	}
 
 	public void setTotalCount() {
-		int resCount = 0;
-		for (int index = 1; index < dataLine.length; index++) {
-			resCount += Integer.parseInt(dataLine[index][5]);
+		for (int index = 1; index < rs.getReadData().size(); index++) {
+			totalCount += Integer.parseInt(rs.getReadData().get(index).getAmount());
 		}
-		totalCount = resCount;
 
 	}
 
@@ -75,11 +88,9 @@ public class Sorting {
 	}
 
 	public void setTotalCost() {
-		int resCost = 0;
-		for (int index = 1; index < dataLine.length; index++) {
-			resCost += Integer.parseInt(dataLine[index][6]);
+		for (int index = 1; index < rs.getReadData().size(); index++) {
+			totalCost += Integer.parseInt(rs.getReadData().get(index).getCost());
 		}
-		totalCost = resCost;
 	}
 
 

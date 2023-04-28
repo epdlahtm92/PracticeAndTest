@@ -8,11 +8,12 @@ public class TicketProgram {
 		OutputData opDt = new OutputData();
 		
 		int orderCount = 0;
-
+		
+		//ticket type finder, today, ticket type, id number, id number scan
+		opDt.header_ticketTypeIdNumberPrint();
+		
+		
 		do {
-			//ticket type finder, today, ticket type, id number, id number scan
-			opDt.header_ticketTypeIdNumberPrint();
-
 			// prefer option, option scan, ticket amounts, ticket amounts scan
 			opDt.body_preferOptionAmountPrint();
 

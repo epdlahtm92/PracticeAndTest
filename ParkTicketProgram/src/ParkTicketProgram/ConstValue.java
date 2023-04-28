@@ -14,14 +14,7 @@ public class ConstValue {
 	public static final int BEFORE_MILL = 1900;
 	public static final int AFTER_MILL = 2000;
 	
-	public static final int ORIGINAL_TICKET_COSTS[] = {62000, 52000, 46000, 68000};
-	
-	
-	
-	public static final int ENGLISH_SELECT = 0;
-	public static final int KOREAN_SELECT = 1;
-	public static final int JAPANESE_SELECT = 1;
-	
+	public static final int ORIGINAL_TICKET_COSTS[] = {62000, 52000, 46000, 68000};	
 	
 	public static final int OPTION_DCs[][] = {{0, 0, 0, 0},
 											  {25000,21000,19000,28000},
@@ -37,4 +30,5 @@ public class ConstValue {
 	public static final int	ELDER_AGE = 65;
 	public static final int KID_AGE = 12;
 	public static final int BABY_AGE = 3;
+
 }

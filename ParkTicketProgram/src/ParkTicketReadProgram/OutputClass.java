@@ -2,10 +2,12 @@ package ParkTicketReadProgram;
 
 public class OutputClass {
 	Sorting st = null;
+	ReaderListSaving ls = null;
 	int region = 0;
 	
 	public OutputClass() {
 		st = new Sorting();
+		ls = new ReaderListSaving();
 	}
 	
 	public void setCountryRegion() {
@@ -19,6 +21,7 @@ public class OutputClass {
 	}
 	
 	public void printTotalSort() {
+		
 		st.setTotalCost();
 		st.setTotalCount();
 
@@ -28,39 +31,43 @@ public class OutputClass {
 		System.out.println("======================================");
 	}
 	public void printOptionSort() {
-		st.setOptionSort();
+		st.setOptionCountSum();
+		st.setOptionCostSum();
+		
 		System.out.println("======================================");
 		System.out.println(ConstValue.LANGUAGE_OPTION[region][2]);
 		System.out.println("--------------------------------------");
-		for (int index = 0; index < st.getOptionCount().length; index++) {
-			System.out.println(ConstValue.OPTION_VARIATIONS[region][index] + " : " + st.getOptionCount()[index]);
+		for (int index = 0; index < st.getOptionCountSum().length; index++) {
+			System.out.println(ConstValue.OPTION_VARIATIONS[region][index] + " : " + st.getOptionCountSum()[index]);
 		}
 		System.out.println("======================================");
 
 		System.out.println("======================================");
 		System.out.println(ConstValue.LANGUAGE_OPTION[region][3]);
 		System.out.println("--------------------------------------");
-		for (int index = 0; index < st.getOptionCost().length; index++) {
-			System.out.println(ConstValue.OPTION_VARIATIONS[region][index] + " : " + st.getOptionCost()[index]);
+		for (int index = 0; index < st.getOptionCostSum().length; index++) {
+			System.out.println(ConstValue.OPTION_VARIATIONS[region][index] + " : " + st.getOptionCostSum()[index]);
 		}
 		System.out.println("======================================");
 	}
 
 	public void printAgeSort() {
-		st.setAgeSort();
+		st.setAgeCountSum();
+		st.setAgeCostSum();
+		
 		System.out.println("======================================");
 		System.out.println(ConstValue.LANGUAGE_OPTION[region][4]);
 		System.out.println("--------------------------------------");
-		for (int index = 0; index < st.getAgeCount().length; index++) {
-			System.out.println(ConstValue.AGE_VARIATIONS[region][index] + " : " + st.getAgeCount()[index]);
+		for (int index = 0; index < st.getAgeCountSum().length; index++) {
+			System.out.println(ConstValue.AGE_VARIATIONS[region][index] + " : " + st.getAgeCountSum()[index]);
 		}
 		System.out.println("======================================");
 
 		System.out.println("======================================");
 		System.out.println(ConstValue.LANGUAGE_OPTION[region][5]);
 		System.out.println("--------------------------------------");
-		for (int index = 0; index < st.getAgeCost().length; index++) {
-			System.out.println(ConstValue.AGE_VARIATIONS[region][index] + " : " + st.getAgeCost()[index]);
+		for (int index = 0; index < st.getAgeCostSum().length; index++) {
+			System.out.println(ConstValue.AGE_VARIATIONS[region][index] + " : " + st.getAgeCostSum()[index]);
 		}
 		System.out.println("======================================");
 

@@ -4,12 +4,12 @@ public class TicketReaderProgram {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ReaderProgram rp = new ReaderProgram();
+		ReaderClass rc = new ReaderClass();
 		OutputClass oc = new OutputClass();
 			
 		oc.setCountryRegion();
 		
-		rp.fileReader();
+		rc.fileReader();
 		
 		oc.printTotalSort();
 		
