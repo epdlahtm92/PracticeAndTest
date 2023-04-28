@@ -17,7 +17,6 @@ public class OutputData {
 
 	public void header_ticketTypeIdNumberPrint() {
 		LanguageResourceBundle.bundleControl();
-//		System.out.println(lgs.getLocaleToString());
 
 		ca.ticketTypeFinder();
 
